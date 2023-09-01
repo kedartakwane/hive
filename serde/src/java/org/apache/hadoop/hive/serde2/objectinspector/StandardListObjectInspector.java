@@ -87,8 +87,14 @@ public class StandardListObjectInspector implements SettableListObjectInspector 
     // so we have to do differently.
     if (! (data instanceof List)) {
       if (! (data instanceof Set)) {
-        Object[] list = (Object[]) data;
-        return list.length;
+        if (! (data instanceof Byte)) {
+          Object[] list = (Object[]) data;
+          return list.length;
+        }
+        else {
+          Byte[] b = (Byte[]) data;
+          return b.length;
+        }
       } else {
         Set<?> set = (Set<?>) data;
         return set.size();
